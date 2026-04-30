@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+body { background: #F7F7FA; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; }
+
+/* ── Theme CSS variables ─────────────────────────────────────────────────── */
+:root {
+  --color-from: #6B8DD6;
+  --color-to:   #6ECFB0;
+  --color-accent: #6B8DD6;
+  --color-accent-2: #6ECFB0;
+}
+
+.bg-gradient-to-r.from-\[\#6B8DD6\] { --tw-gradient-from: var(--color-from) !important; }
+.bg-gradient-to-r.to-\[\#6ECFB0\]   { --tw-gradient-to:   var(--color-to)   !important; }
+.bg-gradient-to-br.from-\[\#6B8DD6\] { --tw-gradient-from: var(--color-from) !important; }
+.bg-gradient-to-br.to-\[\#6ECFB0\]   { --tw-gradient-to:   var(--color-to)   !important; }
+.bg-gradient-to-t.from-\[\#6B8DD6\]  { --tw-gradient-from: var(--color-from) !important; }
+.bg-gradient-to-t.to-\[\#6ECFB0\]    { --tw-gradient-to:   var(--color-to)   !important; }
+
+/* Button gradient (most visible theme element) */
+.from-\[\#6B8DD6\] { --tw-gradient-from: var(--color-from) !important; }
+.to-\[\#6ECFB0\]   { --tw-gradient-to:   var(--color-to)   !important; }
+.bg-\[\#6B8DD6\] { background-color: var(--color-accent) !important; }
+.bg-\[\#6ECFB0\] { background-color: var(--color-accent-2) !important; }
+.text-\[\#6B8DD6\] { color: var(--color-accent) !important; }
+.text-\[\#6ECFB0\] { color: var(--color-accent-2) !important; }
+.border-\[\#6B8DD6\] { border-color: var(--color-accent) !important; }
+.border-\[\#6ECFB0\] { border-color: var(--color-accent-2) !important; }
+.ring-\[\#6B8DD6\] { --tw-ring-color: var(--color-accent) !important; }
+
+/* ── Dark mode global overrides ─────────────────────────────────────────── */
+.dark body                          { background: #0F0F14; }
+.dark .min-h-screen                 { background: #0F0F14; color: #E5E7EB; }
+
+/* Cards / surfaces */
+.dark .bg-white                     { background: #1E1E2E !important; }
+.dark .bg-bg                        { background: #0F0F14 !important; }
+.dark .bg-ob-bg                     { background: #1A1A2E !important; }
+.dark .bg-\[\#F7F7FA\]              { background: #0F0F14 !important; }
+.dark .bg-\[\#EEF0FB\]              { background: #1E1E2E !important; }
+.dark .bg-\[\#F3F4F6\]              { background: #1E1E2E !important; }
+.dark .bg-gray-100                  { background: #2A2A3E !important; }
+.dark .bg-gray-50                   { background: #1A1A2E !important; }
+
+/* Text */
+.dark .text-primary                 { color: #F1F5F9 !important; }
+.dark .text-secondary               { color: #94A3B8 !important; }
+.dark .text-\[\#1A1A2E\]            { color: #F1F5F9 !important; }
+.dark .text-\[\#4B5563\]            { color: #94A3B8 !important; }
+.dark .text-\[\#6B7280\]            { color: #94A3B8 !important; }
+.dark .text-gray-400                { color: #64748B !important; }
+.dark .text-gray-500                { color: #64748B !important; }
+
+/* Borders */
+.dark .border-gray-100              { border-color: #2A2A3E !important; }
+.dark .border-gray-200              { border-color: #2A2A3E !important; }
+.dark .divide-gray-100 > * + *      { border-color: #2A2A3E !important; }
+
+/* Inputs */
+.dark input, .dark textarea         { background: #1E1E2E !important; color: #F1F5F9 !important; border-color: #2A2A3E !important; }
+.dark input::placeholder,
+.dark textarea::placeholder         { color: #475569 !important; }
+
+/* Bottom nav */
+.dark .border-t                     { border-color: #2A2A3E !important; }
+
+/* Shadows — soften in dark */
+.dark .shadow-sm                    { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+.dark .shadow-md                    { box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important; }
+.dark .shadow-lg                    { box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important; }
+
+/* Hover states */
+.dark .hover\:bg-gray-50:hover      { background: #1A1A2E !important; }
