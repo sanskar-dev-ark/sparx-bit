@@ -9,12 +9,22 @@ import promosRoutes from './routes/promos.js'
 
 const app = express()
 
+function getAllowedOrigins() {
+  return [
+    process.env.FRONTEND_URL,
+    ...(process.env.FRONTEND_ORIGINS || '').split(','),
+  ]
+    .map(origin => origin?.trim())
+    .filter(Boolean)
+}
+
 app.use(cors({
   origin: (origin, cb) => {
-    // Allow any localhost origin + the configured FRONTEND_URL
-    if (!origin || origin.startsWith('http://localhost') || origin === process.env.FRONTEND_URL) {
+    const allowedOrigins = getAllowedOrigins()
+    if (!origin || origin.startsWith('http://localhost') || allowedOrigins.includes(origin)) {
       cb(null, true)
     } else {
+      console.warn('[cors blocked]', { origin, allowedOrigins })
       cb(new Error('Not allowed by CORS'))
     }
   },
@@ -33,6 +43,7 @@ app.get('/', (_, res) => {
     name: 'Sparx Bit API',
     ok: true,
     frontend: process.env.FRONTEND_URL || 'http://localhost:5173',
+    allowedOrigins: getAllowedOrigins(),
     health: '/health',
   })
 })
