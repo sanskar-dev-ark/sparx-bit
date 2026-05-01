@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import {
   GoogleAuthProvider,
   OAuthProvider,
+  sendSignInLinkToEmail,
   signInWithPopup,
 } from 'firebase/auth'
 import Button from '../components/Button'
 import BackHeader from '../components/BackHeader'
 import { useApp } from '../context/useApp'
 import { auth } from '../firebase'
-import { api } from '../api'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -22,9 +22,12 @@ export default function Login() {
     if (!email.trim()) return setError('Please enter your email.')
     setLoading(true); setError('')
     try {
-      const result = await api.auth.sendMagicLink(email)
-      if (result.devLink) console.info('[magic-link dev]', result.devLink)
-      localStorage.setItem('emailForSignIn', email)
+      const emailForSignIn = email.trim()
+      await sendSignInLinkToEmail(auth, emailForSignIn, {
+        url: `${window.location.origin}/auth/callback`,
+        handleCodeInApp: true,
+      })
+      localStorage.setItem('emailForSignIn', emailForSignIn)
       navigate('/magic-link')
     } catch (error) {
       console.error('[magic-link error]', {
